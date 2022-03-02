@@ -5,24 +5,40 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector2 moveVal;
-    public float moveSpeed;
-    public float jumpHeight;
-    private bool isGrounded;
-    private bool isJumping;
     private Rigidbody2D rigidbody2d;
+
+    //Animation vars
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool facingRight;
+
+    //Lateral movement vars
+    private float moveValX;
+    private Vector2 moveVector;
+    public float moveSpeed;
     private bool isRunning;
+
+    //Jumping vars
+    public float jumpHeight;
+    private bool isGrounded;
+    private bool isJumping;
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask ground;
 
+    //For double/triple jumping etc
+    public int jumpAmount;
+    private int jumpsLeft;
+
+    //Shooting
+    public Transform firePoint;
+    private float firePointPosition;
+
     // Start is called before the first frame update
     void Start()
     {
-        isGrounded = true;
+        firePointPosition = firePoint.position.x;
+        isGrounded = false;
         isJumping = false;
         rigidbody2d = GetComponent<Rigidbody2D>();
         facingRight = true;
@@ -32,7 +48,9 @@ public class PlayerController : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        moveVal = value.Get<Vector2>();
+        //Get movement vector
+        moveVector = value.Get<Vector2>();
+        moveValX = System.Math.Abs(moveVector.x);
     }
 
     void OnJump(InputValue value)
@@ -47,8 +65,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        
+    }
+
+    private void FixedUpdate()
+    {
         CheckDirection();
-        transform.Translate(new Vector2(moveVal.x, 0) * moveSpeed * Time.deltaTime);
+        transform.Translate(moveSpeed * Time.deltaTime * new Vector2(moveValX, 0));
         UpdateAnimations();
 
         if (isJumping == true)
@@ -60,18 +83,18 @@ public class PlayerController : MonoBehaviour
 
     private void CheckDirection()
     {
-        if(facingRight && moveVal.x < 0)
+        if (facingRight && moveVector.x < 0)
         {
-            spriteRenderer.flipX = true;
             facingRight = !facingRight;
+            rigidbody2d.transform.Rotate(0f, 180f, 0f);
         }
-        else if (!facingRight && moveVal.x > 0)
+        else if (!facingRight && moveVector.x > 0)
         {
-            spriteRenderer.flipX = false;
             facingRight = !facingRight;
+            rigidbody2d.transform.Rotate(0f, 180f, 0f);
         }
 
-        if(moveVal.x != 0)
+        if(moveValX != 0)
         {
             isRunning = true;
         }
