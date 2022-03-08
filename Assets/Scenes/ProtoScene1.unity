@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.237924
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 1734604436}
   - component: {fileID: 1734604438}
   - component: {fileID: 1734604439}
+  - component: {fileID: 1734604440}
   m_Layer: 6
   m_Name: GroundTiles
   m_TagString: Ground
@@ -1338,7 +1339,7 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
@@ -1350,7 +1351,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734604434}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1363,6 +1364,168 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!66 &1734604440
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734604434}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1734604438}
+    m_ColliderPaths:
+    - - X: 110000000
+        Y: -50000000
+      - X: 120000000
+        Y: -50000000
+      - X: 120000000
+        Y: 19687500
+      - X: 119062496
+        Y: 20000000
+      - X: 110000000
+        Y: 20000000
+      - X: 110000000
+        Y: 30000000
+      - X: 90000000
+        Y: 30000000
+      - X: 90000000
+        Y: 20000000
+      - X: 100000000
+        Y: 20000000
+      - X: 100000000
+        Y: 10000000
+      - X: 110000000
+        Y: 10000000
+      - X: 110000000
+        Y: -20000000
+      - X: 100000000
+        Y: -20000000
+      - X: 100000000
+        Y: -30000000
+      - X: 90000000
+        Y: -30000000
+      - X: 90000000
+        Y: -40000000
+      - X: -90000000
+        Y: -40000000
+      - X: -90000000
+        Y: -30000000
+      - X: -100000000
+        Y: -30000000
+      - X: -100000000
+        Y: -20000000
+      - X: -110000000
+        Y: -20000000
+      - X: -110000000
+        Y: 10000000
+      - X: -100000000
+        Y: 10000000
+      - X: -100000000
+        Y: 20000000
+      - X: -90000000
+        Y: 20000000
+      - X: -90000000
+        Y: 30000000
+      - X: -110000000
+        Y: 30000000
+      - X: -110000000
+        Y: 19687500
+      - X: -110937504
+        Y: 20000000
+      - X: -120000000
+        Y: 20000000
+      - X: -120000000
+        Y: -50000000
+      - X: -110000000
+        Y: -50000000
+      - X: -110000000
+        Y: -60000000
+      - X: 110000000
+        Y: -60000000
+    - - X: 30000000
+        Y: 0
+      - X: 10000000
+        Y: 0
+      - X: 10000000
+        Y: 10000000
+      - X: -10000000
+        Y: 10000000
+      - X: -10000000
+        Y: 0
+      - X: -30000000
+        Y: 0
+      - X: -30000000
+        Y: -10000000
+      - X: 30000000
+        Y: -10000000
+    - - X: 40000000
+        Y: -20000000
+      - X: -40000000
+        Y: -20000000
+      - X: -40000000
+        Y: -30000000
+      - X: 40000000
+        Y: -30000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 10.99997, y: -6}
+      - {x: 11.00003, y: -5}
+      - {x: 12, y: -4.999971}
+      - {x: 11.999981, y: 1.9687562}
+      - {x: 11.906246, y: 2}
+      - {x: 11, y: 2.0000293}
+      - {x: 10.99997, y: 3}
+      - {x: 9, y: 2.999971}
+      - {x: 9.00003, y: 2}
+      - {x: 10, y: 1.9999707}
+      - {x: 10.00003, y: 1}
+      - {x: 11, y: 0.9999706}
+      - {x: 10.99997, y: -2}
+      - {x: 10, y: -2.0000293}
+      - {x: 9.99997, y: -3}
+      - {x: 9, y: -3.0000293}
+      - {x: 8.99997, y: -4}
+      - {x: -9, y: -3.9999704}
+      - {x: -9.00003, y: -3}
+      - {x: -10, y: -2.9999707}
+      - {x: -10.00003, y: -2}
+      - {x: -11, y: -1.9999707}
+      - {x: -10.99997, y: 1}
+      - {x: -10, y: 1.0000293}
+      - {x: -9.99997, y: 2}
+      - {x: -9, y: 2.0000293}
+      - {x: -9.00003, y: 3}
+      - {x: -11, y: 2.999971}
+      - {x: -11.000042, y: 1.9687636}
+      - {x: -11.093755, y: 2}
+      - {x: -12, y: 1.9999708}
+      - {x: -11.99997, y: -5}
+      - {x: -11, y: -5.0000296}
+      - {x: -10.99997, y: -6}
+    - - {x: 2.999971, y: -1}
+      - {x: 2.999971, y: 0}
+      - {x: 1, y: 0.0000294}
+      - {x: 0.99997073, y: 1}
+      - {x: -1, y: 0.99997073}
+      - {x: -1.0000294, y: 0}
+      - {x: -3, y: -0.000029300001}
+      - {x: -2.999971, y: -1}
+    - - {x: 3.999971, y: -3}
+      - {x: 3.999971, y: -2}
+      - {x: -4, y: -2.0000293}
+      - {x: -3.999971, y: -3}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &1810085288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1648,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.026623368}
+  m_Offset: {x: 0, y: -0.025}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1496,7 +1659,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.95}
+  m_Size: {x: 0.5, y: 0.94}
   m_EdgeRadius: 0
 --- !u!50 &1810085293
 Rigidbody2D:
@@ -1513,11 +1676,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1810085294
 MonoBehaviour:
@@ -1544,7 +1707,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: XboxStyle
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -1561,15 +1724,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00fea2d5dd6e5164899c96d367a25e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4.5
-  jumpHeight: 5.5
+  jumpSpeed: 8
   groundCheck: {fileID: 1013658034}
   groundCheckRadius: 0.3
   ground:
     serializedVersion: 2
     m_Bits: 64
-  jumpAmount: 0
+  jumpAmount: 2
   firePoint: {fileID: 842111659}
+  dashSpeed: 8
+  jogSpeed: 5
 --- !u!114 &1810085296
 MonoBehaviour:
   m_ObjectHideFlags: 0
