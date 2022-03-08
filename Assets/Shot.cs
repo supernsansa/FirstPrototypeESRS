@@ -10,7 +10,8 @@ public class Shot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shotRB.velocity = transform.right * shotSpeed;
+        //shotRB.velocity = transform.right * shotSpeed;
+        shotRB.AddForce(Vector2.right * shotSpeed);
     }
 
     //When shot collides with another collider

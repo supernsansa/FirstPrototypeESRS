@@ -15,16 +15,17 @@ public class PlayerController : MonoBehaviour
     //Lateral movement vars
     private float moveValX;
     private Vector2 moveVector;
-    public float moveSpeed;
+    private float moveSpeed;
     private bool isRunning;
 
     //Jumping vars
-    public float jumpHeight;
+    public float jumpSpeed;
     private bool isGrounded;
     private bool isJumping;
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask ground;
+    private bool midair;
 
     //For double/triple jumping etc
     public int jumpAmount;
@@ -34,18 +35,30 @@ public class PlayerController : MonoBehaviour
     public Transform firePoint;
     private float firePointPosition;
 
+    //Dash move
+    public float dashSpeed;
+    public float jogSpeed;
+
+    //Misc
+    PlayerInput playerInput;
+
     // Start is called before the first frame update
     void Start()
     {
+        moveSpeed = jogSpeed;
         firePointPosition = firePoint.position.x;
         isGrounded = false;
         isJumping = false;
+        midair = false;
+        jumpsLeft = jumpAmount;
         rigidbody2d = GetComponent<Rigidbody2D>();
         facingRight = true;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
+    //Executes when left stick is moved
     void OnMove(InputValue value)
     {
         //Get movement vector
@@ -53,31 +66,59 @@ public class PlayerController : MonoBehaviour
         moveValX = System.Math.Abs(moveVector.x);
     }
 
-    void OnJump(InputValue value)
+    //Executes when A/South button is pressed
+    void OnJump()
     {
         CheckSurroundings();
         if(isGrounded == true)
         {
             isJumping = true;
             isGrounded = false;
+            jumpsLeft = jumpAmount;
+        }
+        else if(jumpsLeft > 0) {
+            isJumping = true;
+            isGrounded = false;
         }
     }
 
-    void Update()
+    //Checks if player is holding down the left bumper
+    private void DashCheck()
     {
-        
+        CheckSurroundings();
+        if (playerInput.actions["Dash"].IsPressed() && midair == false)
+        {
+            moveSpeed = dashSpeed;
+        }
+        else
+        {
+            moveSpeed = jogSpeed;
+        }
     }
 
+    //Use for everything else, invoked once per frame
+    void Update()
+    {
+        UpdateAnimations();
+    }
+
+    //Use for physics/rigidbodies (runs in lock-step with the physics engine)
     private void FixedUpdate()
     {
+        DashCheck();
         CheckDirection();
-        transform.Translate(moveSpeed * Time.deltaTime * new Vector2(moveValX, 0));
-        UpdateAnimations();
-
-        if (isJumping == true)
+        if(isRunning)
         {
-            rigidbody2d.velocity = Vector2.up * jumpHeight;
+            transform.Translate(moveSpeed * Time.deltaTime * new Vector2(moveValX, 0));
+        }
+
+        if (isJumping == true && jumpsLeft > 0)
+        {
+            rigidbody2d.velocity = Vector2.zero;
+            rigidbody2d.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            jumpsLeft--;
             isJumping = false;
+            midair = true;
         }
     }
 
@@ -112,6 +153,7 @@ public class PlayerController : MonoBehaviour
     private void CheckSurroundings()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, ground);
+        midair = !isGrounded;
     }
 
     private void OnDrawGizmos()
