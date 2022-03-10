@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     //Shooting
     public Transform firePoint;
     private float firePointPosition;
+    private bool beenHit;
+    public float knockback;
 
     //Dash move
     public float dashSpeed;
@@ -56,6 +58,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
+        beenHit = false;
     }
 
     //Executes when left stick is moved
@@ -120,6 +123,13 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
             midair = true;
         }
+
+        //Knockback player if they have been hit by a projectile
+        if(beenHit)
+        {
+            //rigidbody2d.AddRelativeForce((-transform.right + Vector3.up) * knockback, ForceMode2D.Impulse);
+            beenHit = false;
+        }
     }
 
     private void CheckDirection()
@@ -159,5 +169,15 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    //If player collider collides with a trigger collider
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Projectile"))
+        {
+            beenHit = true;
+            Debug.Log("Been hit by projectile!");
+        }
     }
 }

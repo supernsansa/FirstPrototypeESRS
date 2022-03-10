@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -292876848207042869}
   m_Layer: 0
   m_Name: FireballPrefab
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,3 +136,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSpeed: 200
   shotRB: {fileID: 6420950466795676527}
+  knockback: 3
